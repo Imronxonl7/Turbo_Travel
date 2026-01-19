@@ -4,14 +4,15 @@ import { Await, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const LoginPage = () => {
+const LoginPage = ({setToken}) => {
   const navigate = useNavigate()
   const onFinish = async (values) => {
     try {
       let res = await axios.post(`https://v1.turbotravel.uz/api/auth/signin`, values);
       const token = res?.data?.data?.tokens?.accessToken?.token   
-      localStorage.setItem("token" , token)
-      navigate("/admin/countries")
+      localStorage.setItem("token", token);
+      setToken(token);
+      navigate("/admin/countries" , { replace: true })
       toast.success("Tizimga muvaffaqiyatli kirdigniz")
     } catch (error) {
       console.log(error);
