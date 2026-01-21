@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
-import { Await, useNavigate } from "react-router-dom";
+import { Button, Form, Input } from "antd";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -38,7 +38,7 @@ const LoginPage = ({setToken}) => {
         wrapperCol={{ span: 32 }}
         style={{
           maxWidth: 500,
-          width: "100vh",
+          width: "100%",
           border: "1px",
           borderRadius: "10px",
           borderStyle: "solid",
