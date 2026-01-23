@@ -1,13 +1,13 @@
 import React from 'react'
 import useGet from '../hooks/useGet'
-import CategoryTable from '../components/Tables/CategoryTable';
+import GenreTable from '../components/Tables/GenreTable';
 
 const GenrePage = () => {
-   const {data} = useGet({url :"subtours"})
+   const {data} = useGet({url :"genre"})
    
   return (
     <div>
-      <CategoryTable data={data}/>
+      <GenreTable data={data}/>
     </div>
   )
 }

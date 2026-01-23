@@ -1,25 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Form, Input, Modal, Switch } from 'antd';
-import axios, { Axios } from 'axios';
+import { Button, Form, Input, Modal } from 'antd';
+import axios from 'axios';
 import { toast } from 'react-toastify';
-const CategoryAddModal = ({getData}) => {
+const DirectorAddModal = ({getData}) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
   const onFinish = async (values) => {
-   const payload = {
-  name_uz: values.name_uz,
-  name_ru: values.name_ru,
-  name_en: values.name_en,
-  slug: values.slug,
-  order_number: +values.order_number,
-  is_active: false
-}
-
    
   try {
-    await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/category` , payload)
-    toast.success("You added category")
+    await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/director` , values)
+    toast.success("You added director")
     getData()
     setOpen(false)
   } catch (error) {
@@ -30,9 +21,6 @@ const CategoryAddModal = ({getData}) => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-  const onChange = checked => {
-  console.log(`switch to ${checked}`);
-}
   const showModal = () => {
     setOpen(true);
   };
@@ -51,10 +39,10 @@ const CategoryAddModal = ({getData}) => {
   return (
     <div style={{display:'flex' , justifyContent:'end'}}>
       <Button style={{marginBottom:'20px'}} type="primary" onClick={showModal}>
-        Add category
+        Add director
       </Button>
       <Modal
-        title="Add category"
+        title="Add director"
         open={open}
         onOk={handleOk}
         confirmLoading={confirmLoading}
@@ -78,56 +66,47 @@ const CategoryAddModal = ({getData}) => {
       >
         <div style={{display:'grid' , gridTemplateColumns:'repeat(2 , 1fr)' , gap:'10px'}}>
           <Form.Item
-          label="Photo"
-          name="slug"
+          label="Full name"
+          name="full_name"
           layout="vertical"
           rules={[
-            { required: true, message: "Please input your photo!" },
+            { required: true, message: "Please input your full name!" },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label="Name (UZ)"
-          name="name_uz"
+          label="Photo"
+          name="photo_url"
           layout="vertical"
-          rules={[{ required: true, message: "Please input your name (UZ)!" }]}
+          rules={[{ required: true, message: "Please input your photo!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label="Name (EN)"
-          name="name_en"
+          label="Year"
+          name="birth_year"
           layout="vertical"
-          rules={[{ required: true, message: "Please input your name (EN)!" }]}
+          rules={[{ required: true, message: "Please input your year!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label="Name (RU)"
-          name="name_ru"
+          label="Biography"
+          name="biography"
           layout="vertical"
-          rules={[{ required: true, message: "Please input your name (RU)!" }]}
+          rules={[{ required: true, message: "Please input your biography!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label="Order"
-          name="order_number"
+          label="Country"
+          name="country"
           layout="vertical"
-          rules={[{ required: true, message: "Please input your order!" }]}
+          rules={[{ required: true, message: "Please input your country!" }]}
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          label="Active"
-          name="is_active"
-          layout="vertical"
-          rules={[{ required: true, message: "Please input your active!" }]}
-        >
-          <Switch />
-        </Form.Item>
-         
         </div>
         
 
@@ -141,4 +120,4 @@ const CategoryAddModal = ({getData}) => {
     </div>
   );
 };
-export default CategoryAddModal;
+export default DirectorAddModal;

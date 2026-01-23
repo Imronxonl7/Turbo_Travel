@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Input, Modal, Switch } from 'antd';
 import axios, { Axios } from 'axios';
 import { toast } from 'react-toastify';
-const CategoryAddModal = ({getData}) => {
+const GenreAddModal = ({getData}) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
@@ -12,14 +12,14 @@ const CategoryAddModal = ({getData}) => {
   name_ru: values.name_ru,
   name_en: values.name_en,
   slug: values.slug,
-  order_number: +values.order_number,
+  icon: values.icon,
   is_active: false
 }
 
    
   try {
-    await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/category` , payload)
-    toast.success("You added category")
+    await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/genre` , payload)
+    toast.success("You added genre")
     getData()
     setOpen(false)
   } catch (error) {
@@ -112,10 +112,10 @@ const CategoryAddModal = ({getData}) => {
           <Input />
         </Form.Item>
         <Form.Item
-          label="Order"
-          name="order_number"
+          label="Icon"
+          name="icon"
           layout="vertical"
-          rules={[{ required: true, message: "Please input your order!" }]}
+          rules={[{ required: true, message: "Please input your icon!" }]}
         >
           <Input />
         </Form.Item>
@@ -141,4 +141,4 @@ const CategoryAddModal = ({getData}) => {
     </div>
   );
 };
-export default CategoryAddModal;
+export default GenreAddModal;

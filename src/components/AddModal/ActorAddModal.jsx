@@ -17,7 +17,7 @@ const ActorAddModal = ({getData}) => {
    
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/actor` , payload)
-    toast.success("Aktyor qo'shildi")
+    toast.success("You added actor")
     getData()
     setOpen(false)
   } catch (error) {

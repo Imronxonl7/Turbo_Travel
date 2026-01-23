@@ -1,14 +1,14 @@
 import React from 'react'
 import useGet from '../hooks/useGet'
-import CategoryTable from '../components/Tables/CategoryTable';
+import DirectorTable from '../components/Tables/DirectorTable';
 
 
 const DirectorPage = () => {
-   const {data} = useGet({url:"hotels"})
+   const {data} = useGet({url:"director"})
    
   return (
     <div>
-      <CategoryTable data={data}/>
+      <DirectorTable data={data}/>
     </div>
   )
 }
