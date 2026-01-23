@@ -7,8 +7,8 @@ const useGet = ({url}) => {
 
   const getData = async() => {
     try {
-      let res = await axios.get(`https://v1.turbotravel.uz/api/${url}`)
-      setData(res?.data?.data)
+      let res = await axios.get(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/${url}`)
+      setData(res?.data)
       setLoading(false)
     } catch (error) {
       console.log(error);
@@ -19,7 +19,7 @@ const useGet = ({url}) => {
   useEffect(() => {
     getData()
   } , [url])
-  return {data , setData , loading , setLoading}
+  return {data , setData , loading , setLoading , getData}
 }
 
 export default useGet

@@ -8,11 +8,10 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Link, Outlet } from 'react-router-dom';
-import { AiOutlineGlobal, AiOutlineSchedule } from 'react-icons/ai';
 import { PiUsersLight } from 'react-icons/pi';
-import { LiaHotelSolid } from 'react-icons/lia';
-import { VscBook } from 'react-icons/vsc';
-import CountryTable from '../CountryTable';
+import { BiCategory } from 'react-icons/bi';
+import { MdOutlineEmergencyRecording } from 'react-icons/md';
+import { RiMovie2Line, RiShieldUserLine } from 'react-icons/ri';
 const { Header, Sider, Content } = Layout;
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -31,28 +30,29 @@ const Sidebar = () => {
           items={[
             {
               key: '1',
-              icon: <AiOutlineGlobal style={{width:'20px' , height:'20px'}} />,
-              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/countries"}>Countries</Link>,
+              icon: <PiUsersLight style={{width:'20px' , height:'20px'}} />,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/actors"}>Actors</Link>,
             },
             {
               key: '2',
-              icon: <PiUsersLight style={{width:'20px' , height:'20px'}} />,
-              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/toursCities"}>Tours and cities</Link>,
+              icon: <BiCategory  style={{width:'20px' , height:'20px'}} />,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/category"}>Categories</Link>,
             },
+            
             {
               key: '3',
-              icon: <AiOutlineSchedule style={{width:'20px' , height:'20px'}}/>,
-              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/tourPackets"}>Tour packets</Link>,
+              icon: <RiShieldUserLine style={{width:'20px' , height:'20px'}}/>,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/director"}>Director</Link>,
             },
             {
               key: '4',
-              icon: <LiaHotelSolid style={{width:'20px' , height:'20px'}}/>,
-              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/hotel"}>Hotel</Link>,
+              icon: <MdOutlineEmergencyRecording style={{width:'20px' , height:'20px'}}/>,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/genre"}>Genre</Link>,
             },
             {
               key: '5',
-              icon: <VscBook style={{width:'20px' , height:'20px'}}/>,
-              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/destination"}>Destination</Link>,
+              icon: <RiMovie2Line style={{width:'20px' , height:'20px'}}/>,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/movie"}>Movie</Link>,
             },
           ]}
         />

@@ -8,15 +8,15 @@ const LoginPage = ({setToken}) => {
   const navigate = useNavigate()
   const onFinish = async (values) => {
     try {
-      let res = await axios.post(`https://v1.turbotravel.uz/api/auth/signin`, values);
-      const token = res?.data?.data?.tokens?.accessToken?.token   
+      let res = await axios.post(`https://dummyjson.com/auth/login`, values);
+      const token = res?.data?.accessToken
       localStorage.setItem("token", token);
       setToken(token);
-      navigate("/admin/countries" , { replace: true })
+      navigate("/admin/actors" , { replace: true })
       toast.success("Tizimga muvaffaqiyatli kirdigniz")
     } catch (error) {
       console.log(error);
-      toast.error("Parol yoki raqamni noto'g'ri kiritdingiz")
+      toast.error("Parol yoki username noto'g'ri kiritdingiz")
     }
   };
   const onFinishFailed = (errorInfo) => {
@@ -52,11 +52,11 @@ const LoginPage = ({setToken}) => {
         autoComplete="off"
       >
         <Form.Item
-          label="Phone Number"
-          name="phone_number"
+          label="Username"
+          name="username"
           layout="vertical"
           rules={[
-            { required: true, message: "Please input your phone number!" },
+            { required: true, message: "Please input your username!" },
           ]}
         >
           <Input />
