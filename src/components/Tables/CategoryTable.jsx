@@ -1,12 +1,14 @@
 import React from "react";
 import { Button, Flex, Image, Space, Table, Tag } from "antd";
 import CategoryAddModal from "../AddModal/CategoryAddModal";
+import { toast } from "react-toastify";
+import axios from "axios";
 
-const CategoryTable = ({ data , getDAta}) => {
+const CategoryTable = ({ data , getData}) => {
   async function deleteActor(id) {
     try {
-      await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/actor/${id}`)
-      toast.warning("You deleted actor")
+      await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/category/${id}`)
+      toast.warning("You deleted category")
       getData()
     } catch (error) {
       console.log(error);
@@ -60,7 +62,7 @@ const CategoryTable = ({ data , getDAta}) => {
   ];
   return (
     <div>
-      <CategoryAddModal getData={getDAta}/>
+      <CategoryAddModal getData={getData}/>
       <Table columns={columns} dataSource={data} />;
     </div>
   )
