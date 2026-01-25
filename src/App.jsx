@@ -7,6 +7,10 @@ import CategoryPage from './pages/CategoryPage'
 import GenrePage from './pages/GenrePage'
 import DirectorPage from './pages/DirectorPage'
 import MoviePage from './pages/MoviePage'
+import MovieActorPage from './pages/MovieActorPage'
+import MovieCategoryPage from './pages/MovieCategoryPage'
+import MovieDirectorPage from './pages/MovieDirectorPage'
+import MovieGenrePage from './pages/MovieGenrePage'
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -30,6 +34,10 @@ const App = () => {
         <Route path='admin/director' element={<DirectorPage/>}/>
         <Route path='admin/genre' element={<GenrePage/>}/>
         <Route path='admin/movie' element={<MoviePage/>}/>
+        <Route path='admin/movie_actor' element={<MovieActorPage/>}/>
+        <Route path='admin/movie_category' element={<MovieCategoryPage/>}/>
+        <Route path='admin/movie_director' element={<MovieDirectorPage/>}/>
+        <Route path='admin/movie_genre' element={<MovieGenrePage/>}/>
       </Route>
     </Routes>
     </BrowserRouter>

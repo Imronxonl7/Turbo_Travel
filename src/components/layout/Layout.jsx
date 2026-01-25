@@ -5,10 +5,12 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Link, Outlet } from 'react-router-dom';
-import { PiUsersLight } from 'react-icons/pi';
-import { BiCategory } from 'react-icons/bi';
+import { PiFilmSlate, PiUsersLight } from 'react-icons/pi';
+import { BiCategory, BiSolidCameraMovie } from 'react-icons/bi';
 import { MdOutlineEmergencyRecording } from 'react-icons/md';
 import { RiMovie2Line, RiShieldUserLine } from 'react-icons/ri';
+import { TbCategoryPlus } from 'react-icons/tb';
+import { FaUserTie } from 'react-icons/fa';
 const { Header, Sider, Content } = Layout;
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -50,6 +52,26 @@ const Sidebar = () => {
               key: '5',
               icon: <RiMovie2Line style={{width:'20px' , height:'20px'}}/>,
               label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/movie"}>Movie</Link>,
+            },
+            {
+              key: '6',
+              icon: <BiSolidCameraMovie style={{width:'20px' , height:'20px'}}/>,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/movie_actor"}>Movie_Actor</Link>,
+            },
+            {
+              key: '7',
+              icon: <TbCategoryPlus style={{width:'20px' , height:'20px'}}/>,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/movie_category"}>Movie_Category</Link>,
+            },
+            {
+              key: '8',
+              icon: <FaUserTie style={{width:'20px' , height:'20px'}}/>,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/movie_director"}>Movie_Director</Link>,
+            },
+            {
+              key: '9',
+              icon: <PiFilmSlate style={{width:'20px' , height:'20px'}}/>,
+              label: <Link style={{fontSize:'18px' , fontWeight:'normal'}} to={"admin/movie_genre"}>Movie_Genre</Link>,
             },
           ]}
         />

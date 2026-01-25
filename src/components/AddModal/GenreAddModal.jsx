@@ -51,7 +51,7 @@ const GenreAddModal = ({getData}) => {
   return (
     <div style={{display:'flex' , justifyContent:'end'}}>
       <Button style={{marginBottom:'20px'}} type="primary" onClick={showModal}>
-        Add category
+        Add genre
       </Button>
       <Modal
         title="Add category"
