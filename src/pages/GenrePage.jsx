@@ -3,11 +3,11 @@ import useGet from '../hooks/useGet'
 import GenreTable from '../components/Tables/GenreTable';
 
 const GenrePage = () => {
-   const {data} = useGet({url :"genre"})
+   const {data , getData} = useGet({url :"genre"})
    
   return (
     <div>
-      <GenreTable data={data}/>
+      <GenreTable getData={getData} data={data}/>
     </div>
   )
 }

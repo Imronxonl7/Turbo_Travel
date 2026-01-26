@@ -4,11 +4,11 @@ import DirectorTable from '../components/Tables/DirectorTable';
 
 
 const DirectorPage = () => {
-   const {data} = useGet({url:"director"})
+   const {data , getData} = useGet({url:"director"})
    
   return (
     <div>
-      <DirectorTable data={data}/>
+      <DirectorTable getData={getData} data={data}/>
     </div>
   )
 }
