@@ -3,16 +3,20 @@ import { Button, Image, Space, Table } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import MovieGenreAddModal from '../AddModal/MovieGenreAddModal';
+import { useQueryClient } from '@tanstack/react-query';
 
 
-const MovieGenreTable = ({index , genre , getGenre , movie , getMovie , movieGenre , getMovieGenre}) => {
+const MovieGenreTable = ({index , genre , movie , movieGenre}) => {
+  const queryClient = useQueryClient()
 
 
   async function deleteActor(id) {
     try {
       await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/movie_genre/${id}`)
       toast.warning("You deleted movie_genre")
-      getMovieGenre()
+      queryClient.invalidateQueries({
+        queryKey:"movie_genres"
+      })
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +58,7 @@ const MovieGenreTable = ({index , genre , getGenre , movie , getMovie , movieGen
 ];
     return (
       <div>
-        <MovieGenreAddModal movie={movie} genre={genre} getMovieGenre={getMovieGenre}/>
+        <MovieGenreAddModal movie={movie} genre={genre}/>
         <Table key={index} columns={columns} dataSource={movieGenre} />
       </div>
     )

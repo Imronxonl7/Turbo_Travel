@@ -1,12 +1,12 @@
 import React from 'react'
-import useGet from '../hooks/useGet'
 import ActorTable from '../components/Tables/ActorTable'
+import useReactQuery from '../hooks/useReactQuery'
 
 const ActorsPage = () => {
-  const {data , getData} = useGet({url:"actor"})
+  const {data , isLoading} = useReactQuery({url:"actor" , key:"actors"})
   return (
     <div>
-      <ActorTable getData={getData} data={data}/>
+      <ActorTable data={data?.data}/>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import MovieOpenModal from "../OpenModal/MovieOpenModal";
 import { Button } from "antd";
-const MovieAddModal = ({ getData }) => {
+const MovieAddModal = () => {
   const [open, setOpen] = useState(false);
     const showModal = () => {
     setOpen(true);
@@ -18,7 +18,7 @@ const MovieAddModal = ({ getData }) => {
       >
         Add movie
       </Button>
-      <MovieOpenModal setOpen={setOpen} open={open} getData={getData}/>
+      <MovieOpenModal setOpen={setOpen} open={open}/>
     </div>
   );
 };

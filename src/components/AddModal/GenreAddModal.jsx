@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Button, Form, Input, Modal, Switch } from 'antd';
 import axios, { Axios } from 'axios';
 import { toast } from 'react-toastify';
-const GenreAddModal = ({getData}) => {
+import { useQueryClient } from '@tanstack/react-query';
+const GenreAddModal = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
+    const queryClient = useQueryClient()
+
   const onFinish = async (values) => {
    const payload = {
   name_uz: values.name_uz,
@@ -20,7 +23,9 @@ const GenreAddModal = ({getData}) => {
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/genre` , payload)
     toast.success("You added genre")
-    getData()
+    queryClient.invalidateQueries({
+        queryKey:"genres"
+      })
     setOpen(false)
   } catch (error) {
     console.log(error);

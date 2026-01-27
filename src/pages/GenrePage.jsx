@@ -1,13 +1,14 @@
 import React from 'react'
 import useGet from '../hooks/useGet'
 import GenreTable from '../components/Tables/GenreTable';
+import useReactQuery from '../hooks/useReactQuery';
 
 const GenrePage = () => {
-   const {data , getData} = useGet({url :"genre"})
+  const {data , isLoading} = useReactQuery({url:"genre" , key:"genres"})
    
   return (
     <div>
-      <GenreTable getData={getData} data={data}/>
+      <GenreTable data={data?.data}/>
     </div>
   )
 }

@@ -3,13 +3,17 @@ import { Button, Flex, Image, Space, Table, Tag } from "antd";
 import CategoryAddModal from "../AddModal/CategoryAddModal";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useQueryClient } from "@tanstack/react-query";
 
-const CategoryTable = ({ data , getData}) => {
+const CategoryTable = ({ data}) => {
+  const queryClient = useQueryClient()
   async function deleteActor(id) {
     try {
       await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/category/${id}`)
       toast.warning("You deleted category")
-      getData()
+      queryClient.invalidateQueries({
+        queryKey:"categories"
+      })
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +66,7 @@ const CategoryTable = ({ data , getData}) => {
   ];
   return (
     <div>
-      <CategoryAddModal getData={getData}/>
+      <CategoryAddModal/>
       <Table columns={columns} dataSource={data} />;
     </div>
   )

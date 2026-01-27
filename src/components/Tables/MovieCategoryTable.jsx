@@ -5,14 +5,16 @@ import { toast } from 'react-toastify';
 import MovieCategoryAddModal from '../AddModal/MovieCategoryAddModal';
 
 
-const MovieCategoryTable = ({index , category , getCategory , movie , getMovie , movieCategory , getMovieCategory}) => {
+const MovieCategoryTable = ({index , category , movie , movieCategory}) => {
 
 
   async function deleteActor(id) {
     try {
       await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/movie_category/${id}`)
       toast.warning("You deleted movie_category")
-      getMovieCategory()
+      queryClient.invalidateQueries({
+        queryKey:"movie_categories"
+      })
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +56,7 @@ const MovieCategoryTable = ({index , category , getCategory , movie , getMovie ,
 ];
     return (
       <div>
-        <MovieCategoryAddModal movie={movie} category={category} getMovieCategory={getMovieCategory}/>
+        <MovieCategoryAddModal movie={movie} category={category}/>
         <Table key={index} columns={columns} dataSource={movieCategory} />
       </div>
     )

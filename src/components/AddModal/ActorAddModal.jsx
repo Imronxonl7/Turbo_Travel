@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Button, Form, Input, Modal } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-const ActorAddModal = ({getData}) => {
+import { useQueryClient } from '@tanstack/react-query';
+const ActorAddModal = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
+  const queryClient = useQueryClient()
   const onFinish = async (values) => {
    const payload = {
   full_name: values.full_name,
@@ -18,8 +20,10 @@ const ActorAddModal = ({getData}) => {
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/actor` , payload)
     toast.success("You added actor")
-    getData()
     setOpen(false)
+    queryClient.invalidateQueries({
+      queryKey:["actors"]
+    })
   } catch (error) {
     console.log(error);
     

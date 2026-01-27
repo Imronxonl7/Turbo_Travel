@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 import { Button, Form, Input, Modal } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-const DirectorAddModal = ({getData}) => {
+import { useQueryClient } from '@tanstack/react-query';
+const DirectorAddModal = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
+    const queryClient = useQueryClient()
+
   const onFinish = async (values) => {
    
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/director` , values)
     toast.success("You added director")
-    getData()
+    queryClient.invalidateQueries({
+        queryKey:"directors"
+      })
     setOpen(false)
   } catch (error) {
     console.log(error);

@@ -11,6 +11,7 @@ import MovieActorPage from './pages/MovieActorPage'
 import MovieCategoryPage from './pages/MovieCategoryPage'
 import MovieDirectorPage from './pages/MovieDirectorPage'
 import MovieGenrePage from './pages/MovieGenrePage'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -23,8 +24,9 @@ const App = () => {
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
-
+  const queryClient = new QueryClient()
   return (
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<LoginPage setToken={setToken}/>}/>
@@ -41,6 +43,7 @@ const App = () => {
       </Route>
     </Routes>
     </BrowserRouter>
+    </QueryClientProvider>
   )
 }
 

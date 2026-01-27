@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import { Button, Form, Input, Modal, Select } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-const MovieCategoryAddModal = ({movie , category, getMovieCategory}) => {
+import { useQueryClient } from '@tanstack/react-query';
+const MovieCategoryAddModal = ({movie , category}) => {
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm()
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');
+    const queryClient = useQueryClient()
+
   const onFinish = async (values) => {
    
    
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/movie_category` , values)
     toast.success("You added movie_category")
-    getMovieCategory()
+    queryClient.invalidateQueries({
+        queryKey:"movie_categories"
+      })
     setOpen(false)
     form.resetFields()
   } catch (error) {

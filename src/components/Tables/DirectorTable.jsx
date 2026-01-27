@@ -3,16 +3,20 @@ import { Button, Image, Space, Table } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import DirectorAddModal from '../AddModal/DirectorAddModal';
+import { useQueryClient } from '@tanstack/react-query';
 
 
-const DirectorTable = ({data , index , getData}) => {
+const DirectorTable = ({data , index}) => {
 
+  const queryClient = useQueryClient()
 
   async function deleteActor(id) {
     try {
       await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/director/${id}`)
       toast.warning("You deleted director")
-      getData()
+      queryClient.invalidateQueries({
+        queryKey:"directors"
+      })
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +67,7 @@ const DirectorTable = ({data , index , getData}) => {
 ];
     return (
       <div>
-        <DirectorAddModal getData={getData}/>
+        <DirectorAddModal/>
         <Table key={index} columns={columns} dataSource={data} />
       </div>
     )

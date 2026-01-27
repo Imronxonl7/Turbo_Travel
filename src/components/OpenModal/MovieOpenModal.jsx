@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { Button, Form, Input, Modal, Switch } from "antd";
 import axios, { Axios } from "axios";
 import { toast } from "react-toastify";
+import { useQueryClient } from '@tanstack/react-query';
 
-const MovieOpenModal = ({getData , open , setOpen}) => {
+const MovieOpenModal = ({ open , setOpen}) => {
       const [confirmLoading, setConfirmLoading] = useState(false);
       const [modalText, setModalText] = useState("Content of the modal");
+        const queryClient = useQueryClient()
+
        const onFinish = async (values) => {
     const payload = {
       title_uz: values.title_uz,
@@ -45,7 +48,9 @@ const MovieOpenModal = ({getData , open , setOpen}) => {
         payload,
       );
       toast.success("You added movie");
-      getData();
+      queryClient.invalidateQueries({
+        queryKey:"movies"
+      })
       setOpen(false);
     } catch (error) {
       console.log(error);

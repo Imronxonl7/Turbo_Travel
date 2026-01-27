@@ -3,13 +3,18 @@ import { Button, Flex, Image, Space, Table, Tag } from "antd";
 import { toast } from "react-toastify";
 import axios from "axios";
 import MovieAddModal from "../AddModal/MovieAddModal";
+import { useQueryClient } from "@tanstack/react-query";
 
-const MovieTable = ({ data , getData}) => {
+const MovieTable = ({ data}) => {
+    const queryClient = useQueryClient()
+
   async function deleteActor(id) {
     try {
       await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/movie/${id}`)
       toast.warning("You deleted movie")
-      getData()
+      queryClient.invalidateQueries({
+        queryKey:"movies"
+      })
     } catch (error) {
       console.log(error);
     }
@@ -117,7 +122,7 @@ const MovieTable = ({ data , getData}) => {
   ];
   return (
     <div>
-      <MovieAddModal getData={getData}/>
+      <MovieAddModal/>
       <Table columns={columns} dataSource={data} />;
     </div>
   )

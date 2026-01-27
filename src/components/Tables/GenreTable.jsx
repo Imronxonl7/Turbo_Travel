@@ -3,13 +3,18 @@ import { Button, Flex, Image, Space, Table, Tag } from "antd";
 import { toast } from "react-toastify";
 import axios from "axios";
 import GenreAddModal from "../AddModal/GenreAddModal";
+import { useQueryClient } from "@tanstack/react-query";
 
-const GenreTable = ({ data , getData}) => {
+const GenreTable = ({ data}) => {
+    const queryClient = useQueryClient()
+
   async function deleteActor(id) {
     try {
       await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/genre/${id}`)
       toast.warning("You deleted genre")
-      getData()
+      queryClient.invalidateQueries({
+        queryKey:"genres"
+      })
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +67,7 @@ const GenreTable = ({ data , getData}) => {
   ];
   return (
     <div>
-      <GenreAddModal getData={getData}/>
+      <GenreAddModal/>
       <Table columns={columns} dataSource={data} />;
     </div>
   )

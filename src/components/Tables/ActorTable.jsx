@@ -3,16 +3,20 @@ import { Button, Image, Space, Table } from 'antd';
 import ActorAddModal from '../AddModal/ActorAddModal';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useQueryClient } from '@tanstack/react-query';
 
 
-const ActorTable = ({data , index , getData}) => {
+const ActorTable = ({data , index}) => {
 
+  const queryClient = useQueryClient()
 
   async function deleteActor(id) {
     try {
       await axios.delete(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/actor/${id}`)
       toast.warning("You deleted actor")
-      getData()
+      queryClient.invalidateQueries({
+      queryKey:["actors"]
+    })
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +73,7 @@ const ActorTable = ({data , index , getData}) => {
 ];
     return (
       <div>
-        <ActorAddModal getData={getData}/>
+        <ActorAddModal/>
         <Table key={index} columns={columns} dataSource={data} />
       </div>
     )
