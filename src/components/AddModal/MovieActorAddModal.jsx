@@ -16,10 +16,10 @@ const MovieActorAddModal = ({movie , actor }) => {
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/movie_actor` , values)
     toast.success("You added movie_actor")
+    setOpen(false)
     queryClient.invalidateQueries({
         queryKey:"movie_actors"
       })
-    setOpen(false)
     form.resetFields()
   } catch (error) {
     console.log(error);

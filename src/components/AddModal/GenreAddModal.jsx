@@ -23,10 +23,10 @@ const GenreAddModal = () => {
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/genre` , payload)
     toast.success("You added genre")
+    setOpen(false)
     queryClient.invalidateQueries({
         queryKey:"genres"
       })
-    setOpen(false)
   } catch (error) {
     console.log(error);
     

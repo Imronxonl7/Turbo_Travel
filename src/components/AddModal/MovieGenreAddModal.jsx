@@ -16,10 +16,10 @@ const MovieGenreAddModal = ({movie , genre}) => {
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/movie_genre` , values)
     toast.success("You added movie_genre")
+    setOpen(false)
     queryClient.invalidateQueries({
         queryKey:"movie_genres"
       })
-    setOpen(false)
     form.resetFields()
   } catch (error) {
     console.log(error);

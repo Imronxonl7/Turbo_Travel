@@ -48,10 +48,10 @@ const MovieOpenModal = ({ open , setOpen}) => {
         payload,
       );
       toast.success("You added movie");
+      setOpen(false);
       queryClient.invalidateQueries({
         queryKey:"movies"
       })
-      setOpen(false);
     } catch (error) {
       console.log(error);
     }

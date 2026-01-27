@@ -23,10 +23,10 @@ const CategoryAddModal = () => {
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/category` , payload)
     toast.success("You added category")
+    setOpen(false)
     queryClient.invalidateQueries({
         queryKey:"categories"
       })
-    setOpen(false)
   } catch (error) {
     console.log(error);
     

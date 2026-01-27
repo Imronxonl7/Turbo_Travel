@@ -14,10 +14,10 @@ const DirectorAddModal = () => {
   try {
     await axios.post(`https://x8ki-letl-twmt.n7.xano.io/api:j6hO02gL/director` , values)
     toast.success("You added director")
+    setOpen(false)
     queryClient.invalidateQueries({
         queryKey:"directors"
       })
-    setOpen(false)
   } catch (error) {
     console.log(error);
     
